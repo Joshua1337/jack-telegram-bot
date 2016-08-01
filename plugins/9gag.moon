@@ -3,17 +3,18 @@ run = (msg,matches) ->
   jstr, res = http.request url
   jdat = JSON.decode jstr
   i = math.random #jdat
+  title = jdat[i].title
   image = jdat[i].src
   if image\sub(0,2) == '//'
     image = msg.text\sub(3,-1)
 
   if msg.chat.type == "inline"
-    block = "[#{inline_photo_block "#{image}", "#{image}", "GAG"}]"
+    block = "[#{inline_photo_block "#{image}", "#{image}", "GAG", "title"}]"
     telegram!\sendInline msg.id, block
     return
 
   GAG = download_to_file image,"9GAG.jpg"
-  telegram!\sendPhoto msg.chat.id,GAG
+  telegram!\sendPhoto msg.chat.id,GAG,title
   os.remove GAG
 
   return
