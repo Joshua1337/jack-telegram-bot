@@ -17,6 +17,7 @@ return {
   usage: "`/cat` - Return a Cat\n"
   patterns: {
   "^[/!#]cat"
+  "^[/!#]kadse"
   "^###inline[/!#]cat"
   }
   :run
